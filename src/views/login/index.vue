@@ -9,6 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
+        <img src="@/assets/logo/logo.svg" class="login-logo" alt="" />
         <h3 class="title">欢迎登录</h3>
       </div>
 
@@ -198,6 +199,12 @@
     width: 100%;
     background: $bg;
     overflow: hidden;
+    background-image: url('../../assets/homeBanner.jpg');
+    background-size: cover;
+
+    .login-logo {
+      width: 60px;
+    }
 
     .login-form {
       position: relative;
@@ -230,13 +237,16 @@
 
     .title-container {
       position: relative;
+      display: flex;
+      margin-left: 95px;
 
       .title {
         font-size: 26px;
-        color: $light_gray;
-        margin: 0px auto 40px auto;
+        margin-left: 20px;
         text-align: center;
-        font-weight: bold;
+        color: #1ca2e4;
+        font-size: 2.125rem;
+        font-weight: 700;
       }
     }
 
