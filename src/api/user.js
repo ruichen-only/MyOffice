@@ -18,21 +18,21 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/vue-admin-template/user/logout',
+    url: '/user/logout',
     method: 'post',
   })
 }
 
 export function findAll() {
   return request({
-    url: '/vue-admin-template/user/findAll',
+    url: '/user/findAll',
     method: 'get',
   })
 }
 
 export function deleteById(userId) {
   return request({
-    url: '/vue-admin-template/user/deleteById',
+    url: '/user/deleteById',
     method: 'delete',
     data: { userId },
   })
@@ -40,7 +40,7 @@ export function deleteById(userId) {
 
 export function deleteByIds(userIds) {
   return request({
-    url: '/vue-admin-template/user/deleteByIds',
+    url: '/user/deleteByIds',
     method: 'delete',
     data: { userIds },
   })
@@ -48,7 +48,7 @@ export function deleteByIds(userIds) {
 
 export function create(data) {
   return request({
-    url: '/vue-admin-template/user/create',
+    url: '/user/create',
     method: 'post',
     data,
   })
@@ -56,7 +56,7 @@ export function create(data) {
 
 export function updateById(data) {
   return request({
-    url: '/vue-admin-template/user/updateById',
+    url: '/user/updateById',
     method: 'put',
     data,
   })
