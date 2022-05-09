@@ -17,7 +17,6 @@
           v-model.trim="form.userId"
           autocomplete="off"
           :maxlength="50"
-          disabled
         ></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
@@ -182,15 +181,16 @@
       open(row, readonly) {
         if (readonly == true) {
           this.title = '用户详情'
-          this.readonly = true
+          this.form = Object.assign({ confirmPassword: row.password }, row)
+          this.form.gender = this.form.gender + ''
         } else if (!row) {
           this.title = '添加用户'
-          this.readonly = false
         } else {
           this.title = '编辑用户'
-          this.readonly = false
           this.form = Object.assign({ confirmPassword: row.password }, row)
+          this.form.gender = this.form.gender + ''
         }
+        this.readonly = readonly
         this.visible = true
       },
       close() {
@@ -202,9 +202,10 @@
       save() {
         this.$refs['form'].validate(async (valid) => {
           if (valid) {
-            const { msg } = this.form.userId
-              ? await updateById(this.form)
-              : await create(this.form)
+            const { msg } =
+              this.title !== '添加用户'
+                ? await updateById(this.form)
+                : await create(this.form)
             this.$message({
               message: msg,
               type: 'success',

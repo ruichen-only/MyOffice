@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function findAll() {
   return request({
-    url: '/vue-admin-template/department/findAll',
+    url: '/department/findAll',
     method: 'get',
   })
 }
 
 export function deleteById(deptId) {
   return request({
-    url: '/vue-admin-template/department/deleteById',
+    url: '/department/deleteById',
     method: 'delete',
     data: { deptId },
   })
@@ -17,7 +17,7 @@ export function deleteById(deptId) {
 
 export function deleteByIds(deptIds) {
   return request({
-    url: '/vue-admin-template/department/deleteByIds',
+    url: '/department/deleteByIds',
     method: 'delete',
     data: { deptIds },
   })
@@ -25,7 +25,7 @@ export function deleteByIds(deptIds) {
 
 export function create(data) {
   return request({
-    url: '/vue-admin-template/department/create',
+    url: '/department/create',
     method: 'post',
     data,
   })
@@ -33,7 +33,7 @@ export function create(data) {
 
 export function updateById(data) {
   return request({
-    url: '/vue-admin-template/department/updateById',
+    url: '/department/updateById',
     method: 'put',
     data,
   })
