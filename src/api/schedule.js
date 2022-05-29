@@ -2,21 +2,21 @@ import request from '@/utils/request'
 
 export function findAll() {
   return request({
-    url: '/vue-admin-template/schedule/findAll',
+    url: '/schedule/findAll',
     method: 'get',
   })
 }
 
 export function searchDepSchedule() {
   return request({
-    url: '/vue-admin-template/schedule/searchDepSchedule',
+    url: '/schedule/searchDepSchedule',
     method: 'get',
   })
 }
 
 export function updateById(data) {
   return request({
-    url: '/vue-admin-template/schedule/updateById',
+    url: '/schedule/updateById',
     method: 'put',
     data,
   })
@@ -24,7 +24,7 @@ export function updateById(data) {
 
 export function deleteById(scheduleId) {
   return request({
-    url: '/vue-admin-template/schedule/deleteById',
+    url: '/schedule/deleteById',
     method: 'delete',
     data: { scheduleId },
   })
@@ -32,7 +32,7 @@ export function deleteById(scheduleId) {
 
 export function create(data) {
   return request({
-    url: '/vue-admin-template/schedule/create',
+    url: '/schedule/create',
     method: 'post',
     data,
   })

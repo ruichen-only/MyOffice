@@ -130,6 +130,7 @@
                 this.loading = false
               })
               .catch(() => {
+                this.$message.error('Account and password are incorrect.')
                 this.loading = false
               })
           } else {
