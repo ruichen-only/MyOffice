@@ -27,11 +27,14 @@
       @selection-change="setSelectRows"
     >
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="deptName" label="部门名称"></el-table-column>
+      <el-table-column prop="departName" label="部门名称"></el-table-column>
       <el-table-column prop="branchName" label="机构"></el-table-column>
       <el-table-column prop="username" label="负责人"></el-table-column>
-      <el-table-column prop="telephone" label="联系电话"></el-table-column>
-      <el-table-column prop="mobilePhone" label="移动电话"></el-table-column>
+      <el-table-column prop="connectTelNo" label="联系电话"></el-table-column>
+      <el-table-column
+        prop="connectMobileTelNo"
+        label="移动电话"
+      ></el-table-column>
       <el-table-column prop="faxes" label="传真"></el-table-column>
       <el-table-column width="150" fixed="right" label="操作">
         <template #default="{ row }">
@@ -78,7 +81,7 @@
             return true
           }
           return (
-            department.deptName
+            department.departName
               .toLowerCase()
               .includes(this.keyword.toLowerCase()) ||
             department.branchName
@@ -101,6 +104,7 @@
       async initDeptList() {
         this.isLoading = true
         const { data } = await findAll()
+        debugger
         this.deptList = data
         this.isLoading = false
       },

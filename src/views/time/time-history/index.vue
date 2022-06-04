@@ -64,7 +64,7 @@
             <el-option
               v-for="item in filterDepOptions"
               :key="item.deptId"
-              :label="item.deptName"
+              :label="item.departName"
               :value="item.deptId"
             ></el-option>
           </el-select>

@@ -37,7 +37,7 @@
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="userId" label="用户id"></el-table-column>
       <el-table-column prop="username" label="姓名"></el-table-column>
-      <el-table-column prop="password" label="密码"></el-table-column>
+      <!-- <el-table-column prop="password" label="密码"></el-table-column> -->
       <el-table-column prop="roleName" label="角色"></el-table-column>
       <el-table-column width="250" fixed="right" label="操作">
         <template #default="{ row }">

@@ -47,12 +47,12 @@
         <el-radio v-model="form.gender" label="0">女</el-radio>
       </el-form-item>
       <el-form-item label="所在部门" prop="department">
-        <el-select v-model="form.deptId" style="width: 100%">
+        <el-select v-model="form.departId" style="width: 100%">
           <el-option
             v-for="department in deptList"
-            :key="department.deptId"
-            :label="department.deptName"
-            :value="department.deptId"
+            :key="department.departId"
+            :label="department.departName"
+            :value="department.departId"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -72,15 +72,15 @@
       </el-form-item>
       <el-form-item label="状态" prop="userState">
         <el-select
-          v-model="form.userStateId"
+          v-model="form.userState"
           placeholder="请选择用户状态"
           style="width: 100%"
         >
           <el-option
             v-for="userState in userStateList"
-            :key="userState.userStateId"
+            :key="userState.userState"
             :label="userState.userStateName"
-            :value="userState.userStateId"
+            :value="userState.userState"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -110,7 +110,7 @@
         }
       }
       const checkDepartment = (rule, value, callback) => {
-        if (!this.form.deptId) {
+        if (!this.form.departId) {
           callback(new Error('请选择部门'))
         } else {
           callback()
@@ -124,7 +124,7 @@
         }
       }
       const checkUserState = (rule, value, callback) => {
-        if (this.$baseLodash.isNil(this.form.userStateId)) {
+        if (this.$baseLodash.isNil(this.form.userState)) {
           callback(new Error('请选择用户状态'))
         } else {
           callback()
@@ -137,10 +137,10 @@
           password: '',
           confirmPassword: '',
           username: '',
-          deptId: '',
+          departId: '',
           gender: '',
           roleId: '',
-          userStateId: '',
+          userState: '',
         },
         rules: {
           password: [
@@ -177,6 +177,7 @@
         this.deptList = deptdata.data
         this.roleList = roleData.data
         this.userStateList = userStateData.data
+        debugger
       },
       open(row, readonly) {
         if (readonly == true) {
@@ -202,6 +203,8 @@
       save() {
         this.$refs['form'].validate(async (valid) => {
           if (valid) {
+            console.log(this.form)
+            debugger
             const { msg } =
               this.title !== '添加用户'
                 ? await updateById(this.form)

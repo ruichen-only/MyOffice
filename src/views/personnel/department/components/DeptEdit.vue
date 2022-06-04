@@ -6,9 +6,9 @@
     @close="close"
   >
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-      <el-form-item label="部门名称" prop="deptName">
+      <el-form-item label="部门名称" prop="departName">
         <el-input
-          v-model.trim="form.deptName"
+          v-model.trim="form.departName"
           autocomplete="off"
           :maxlength="50"
         ></el-input>
@@ -25,7 +25,7 @@
       </el-form-item>
       <el-form-item label="负责人" prop="username">
         <el-cascader
-          v-model="form.userId"
+          v-model="form.principalUser"
           :options="userInfo"
           :props="{ expandTrigger: 'hover' }"
           :show-all-levels="false"
@@ -33,14 +33,14 @@
       </el-form-item>
       <el-form-item label="联系电话">
         <el-input
-          v-model.trim="form.telephone"
+          v-model.trim="form.connectTelNo"
           autocomplete="off"
           :maxlength="8"
         ></el-input>
       </el-form-item>
       <el-form-item label="移动电话">
         <el-input
-          v-model.trim="form.mobilePhone"
+          v-model.trim="form.connectMobileTelNo"
           autocomplete="off"
           :maxlength="11"
         ></el-input>
@@ -70,21 +70,21 @@
       return {
         title: '',
         form: {
-          deptName: '',
+          departName: '',
           branchId: '',
-          userId: [],
-          telephone: '',
-          mobilePhone: '',
+          principalUser: [],
+          connectTelNo: '',
+          connectMobileTelNo: '',
           faxes: '',
         },
         rules: {
-          deptName: [
+          departName: [
             { required: true, trigger: 'blur', message: '请输入部门名称' },
           ],
           branchId: [
             { required: true, trigger: 'blur', message: '请选择机构' },
           ],
-          userId: [
+          principalUser: [
             { required: true, trigger: 'blur', message: '请选择部门负责人' },
           ],
         },
@@ -108,11 +108,12 @@
       //该方法需要优化
       async initUserInfo() {
         const { data } = await findAllUsers()
+        debugger
         data.forEach((item) => {
           const branchExist = this.userInfo.some((branch) => {
             if (branch.value === item.branchId) {
               const deptExist = branch.children.some((dept) => {
-                if (dept.value === item.deptId) {
+                if (dept.value === item.departId) {
                   dept.children.push({
                     value: item.userId,
                     label: item.username,
@@ -123,8 +124,8 @@
               })
               if (!deptExist) {
                 branch.children.push({
-                  value: item.deptId,
-                  label: item.deptName,
+                  value: item.departId,
+                  label: item.departName,
                   children: [],
                 })
               }
@@ -138,8 +139,8 @@
               label: item.branchName,
               children: [
                 {
-                  value: item.deptId,
-                  label: item.deptName,
+                  value: item.departId,
+                  label: item.departName,
                   children: [{ value: item.userId, label: item.username }],
                 },
               ],
@@ -167,10 +168,10 @@
           if (valid) {
             const data = Object.assign({}, this.form)
             //TODO
-            if (this.$baseLodash.isArray(data.userId)) {
-              data.userId = data.userId.pop()
+            if (this.$baseLodash.isArray(data.principalUser)) {
+              data.principalUser = data.principalUser.pop()
             }
-            const { msg } = data.deptId
+            const { msg } = data.departId
               ? await updateById(data)
               : await create(data)
             this.$message({
